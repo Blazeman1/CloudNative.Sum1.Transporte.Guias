@@ -59,8 +59,6 @@ public class PdfGeneratorService {
             document.add(subtitulo);
 
             // Línea separadora
-            LineSeparator line = new LineSeparator(1, 100, HEADER_BG, Element.ALIGN_CENTER, -2);
-            document.add(new Chunk(line));
             document.add(Chunk.NEWLINE);
 
             // ── Sección: Datos del Transportista ────────────────────────
