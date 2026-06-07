@@ -1,3 +1,4 @@
+// v2 - CORS fix allowedOriginPatterns
 package com.transporte.guias.config;
 
 import org.springframework.context.annotation.Bean;
