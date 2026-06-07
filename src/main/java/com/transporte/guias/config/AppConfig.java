@@ -18,18 +18,6 @@ import java.util.concurrent.Executor;
 @Configuration
 @PropertySource(value = "classpath:application.properties", ignoreResourceNotFound = false)
 public class AppConfig implements WebMvcConfigurer {
-
-    @Value("${app.cors.allowed-origins:http://localhost:3000,http://localhost:8080}")
-    private String[] allowedOrigins;
-    
-    @Value("${app.cors.allowed-methods:GET,POST,PUT,DELETE,OPTIONS}")
-    private String[] allowedMethods;
-    
-    @Value("${app.cors.allowed-headers:*}")
-    private String[] allowedHeaders;
-    
-    @Value("${app.cors.allow-credentials:true}")
-    private boolean allowCredentials;
     
     @Value("${app.thread-pool.core-size:5}")
     private int corePoolSize;
@@ -61,19 +49,19 @@ public class AppConfig implements WebMvcConfigurer {
      * Permite que aplicaciones frontend (React, Angular, Vue) consuman la API
      */
     @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**")
+public void addCorsMappings(CorsRegistry registry) {
+    registry.addMapping("/api/**")
             .allowedOriginPatterns("*")
             .allowedMethods("GET","POST","PUT","DELETE","OPTIONS")
             .allowedHeaders("*")
             .allowCredentials(true)
             .maxAge(3600);
 
-        registry.addMapping("/public/**")
+    registry.addMapping("/public/**")
             .allowedOriginPatterns("*")
             .allowedMethods("GET")
             .maxAge(3600);
-    }
+}
     
     /**
      * ThreadPool para tareas asíncronas
