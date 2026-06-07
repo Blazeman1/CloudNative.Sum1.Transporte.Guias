@@ -63,17 +63,16 @@ public class AppConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
-                .allowedOrigins(allowedOrigins)
-                .allowedMethods(allowedMethods)
-                .allowedHeaders(allowedHeaders)
-                .allowCredentials(allowCredentials)
-                .maxAge(3600);  // Cache preflight por 1 hora
-        
-        // Configuración adicional para endpoints públicos
+            .allowedOriginPatterns("*")
+            .allowedMethods("GET","POST","PUT","DELETE","OPTIONS")
+            .allowedHeaders("*")
+            .allowCredentials(true)
+            .maxAge(3600);
+
         registry.addMapping("/public/**")
-                .allowedOrigins("*")
-                .allowedMethods("GET")
-                .maxAge(3600);
+            .allowedOriginPatterns("*")
+            .allowedMethods("GET")
+            .maxAge(3600);
     }
     
     /**
