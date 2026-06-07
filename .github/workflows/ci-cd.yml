@@ -37,7 +37,7 @@ jobs:
 
       - name: Configurar Docker Buildx
         uses: docker/setup-buildx-action@v3
-
+        
       - name: Build y Push imagen Docker
         uses: docker/build-push-action@v5
         with:
@@ -46,8 +46,7 @@ jobs:
           tags: |
             ${{ env.DOCKER_IMAGE }}:latest
             ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          no-cache: true
 
   deploy-ec2:
     name: Deploy en EC2
